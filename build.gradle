@@ -1,0 +1,46 @@
+plugins {
+    id 'java-library'   //более легковесная чем, id: 'java'
+    id "io.freefair.lombok" version "5.3.0"
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompileOnly('org.projectlombok:lombok')
+    testAnnotationProcessor('org.projectlombok:lombok')
+    testImplementation (
+            "com.codeborne:selenide:6.9.0",
+            "org.junit.jupiter:junit-jupiter:5.8.2",
+            "com.codeborne:selenide-proxy:6.9.0",
+            "com.github.javafaker:javafaker:1.0.2"
+    )
+
+}
+
+// явно говорим, что будет использоваться  junit5 для тестов
+test {
+    useJUnitPlatform()
+}
+
+tasks.withType(JavaCompiler) {
+    options.encoding = 'UTF-8'
+}
+
+help {
+    doFirst {
+        println ""
+        println "************************************************************************ "
+        println "***                                                                  *** "
+        println "*** Welcome to https://github.com/mnatikk/qa.quru_hw_05              *** "
+        println "***                                                                  *** "
+        println "*** ./gradlew help                                                   *** "
+        println "***                                                                  *** "
+        println "************************************************************************ "
+        println ""
+    }
+}
